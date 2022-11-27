@@ -19,32 +19,15 @@ keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, sil
 -- jk to ESC
 keymap("i", "jk", "<ESC>", { noremap = true, silent = true })
 
-local keys = {
-  ['cr']        = vim.api.nvim_replace_termcodes('<CR>', true, true, true),
-  ['ctrl-y']    = vim.api.nvim_replace_termcodes('<C-y>', true, true, true),
-  ['ctrl-y_cr'] = vim.api.nvim_replace_termcodes('<C-y><CR>', true, true, true),
-}
-
-_G.cr_action = function()
-  if vim.fn.pumvisible() ~= 0 then
-    -- If popup is visible, confirm selected item or add new line otherwise
-    local item_selected = vim.fn.complete_info()['selected'] ~= -1
-    return item_selected and keys['ctrl-y'] or keys['ctrl-y_cr']
-  else
-    -- If popup is not visible, use plain `<CR>`. You might want to customize
-    -- according to other plugins. For example, to use 'mini.pairs', replace
-    -- next line with `return require('mini.pairs').cr()`
-    return keys['cr']
-  end
-end
-
-api.nvim_set_keymap('i', '<CR>', 'v:lua._G.cr_action()', { noremap = true, expr = true })
-
 -- Resizing panes
 keymap("n", "<A-Left>", ":vertical resize +1<CR>", default_opts)
 keymap("n", "<A-Right>", ":vertical resize -1<CR>", default_opts)
 keymap("n", "<A-Up>", ":resize -1<CR>", default_opts)
 keymap("n", "<A-Down>", ":resize +1<CR>", default_opts)
+
+-- Remap leap bindings s/S => f/F
+keymap("n", "f", "<Plug>(leap-forward-to)", default_opts)
+keymap("n", "F", "<Plug>(leap-backward-to)", default_opts)
 
 -- Terminal
 keymap("t", "<C-Esc>", "<C-\\><C-n><cmd>ToggleTerm<cr>", default_opts)

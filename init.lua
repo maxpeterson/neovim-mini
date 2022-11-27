@@ -67,10 +67,30 @@ local function plugins(use)
   }
   use {
     "ggandor/leap.nvim",
-    -- cmd = { "HopWord", "HopChar1" },
     config = function()
       require('leap').add_default_mappings()
     end,
+  }
+  use {
+    "windwp/nvim-autopairs",
+    wants = "nvim-treesitter",
+    module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
+    config = function()
+      require("config.autopairs").setup()
+    end,
+  }
+  use {
+    "windwp/nvim-ts-autotag",
+    wants = "nvim-treesitter",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-ts-autotag").setup { enable = true }
+    end,
+  }
+  use {
+    "RRethy/nvim-treesitter-endwise",
+    wants = "nvim-treesitter",
+    event = "InsertEnter",
   }
   use {
     "folke/which-key.nvim",
@@ -151,6 +171,37 @@ local function plugins(use)
       "nvim-telescope/telescope-file-browser.nvim",
     },
   }
+  use {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    opt = true,
+    config = function()
+      require("config.cmp").setup()
+    end,
+    wants = { "LuaSnip" },
+    requires = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lua",
+      "ray-x/cmp-treesitter",
+      "hrsh7th/cmp-cmdline",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp",
+      -- "hrsh7th/cmp-nvim-lsp-signature-help",
+      -- "hrsh7th/cmp-calc",
+      -- "f3fora/cmp-spell",
+      -- "hrsh7th/cmp-emoji",
+      {
+        "L3MON4D3/LuaSnip",
+        wants = "friendly-snippets",
+        config = function()
+          require("config.luasnip")
+        end,
+      },
+      "rafamadriz/friendly-snippets",
+    },
+    disable = false,
+  }
   use({
     "echasnovski/mini.nvim",
     config = function()
@@ -160,15 +211,13 @@ local function plugins(use)
   use({
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
+    wants = {
+      "cmp-nvim-lsp",
+      "LuaSnip",
+    },
     requires = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      {
-        "L3MON4D3/LuaSnip",
-        config = function()
-          require("config.luasnip")
-        end,
-      },
     },
     config = function()
       require("config.lsp")

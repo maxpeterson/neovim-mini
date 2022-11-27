@@ -199,10 +199,8 @@ local function formatting(client, bufnr)
 end
 
 local function on_attach(client, bufnr)
-  -- api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  -- api.nvim_buf_set_option(bufnr, "completefunc", "v:lua.vim.lsp.omnifunc")
-  api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.MiniCompletion.completefunc_lsp")
-  api.nvim_buf_set_option(bufnr, "completefunc", "v:lua.MiniCompletion.completefunc_lsp")
+  api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  api.nvim_buf_set_option(bufnr, "completefunc", "v:lua.vim.lsp.omnifunc")
 
   api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
   if client.server_capabilities.definitionProvider then
@@ -211,13 +209,13 @@ local function on_attach(client, bufnr)
 
   keymappings(client, bufnr)
   highlighting(client, bufnr)
-  formatting(client, bufnr)
+  -- Reformat on save
+  -- formatting(client, bufnr)
   -- signature_help(client, bufnr)
 end
 
 ----------------------------- LSP Setup -------------------------
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 lsp_handlers()
 
