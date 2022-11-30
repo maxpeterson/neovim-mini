@@ -16,9 +16,6 @@ g.argwrap_padded_braces = '{'
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
--- jk to ESC
-keymap("i", "jk", "<ESC>", { noremap = true, silent = true })
-
 -- Resizing panes
 keymap("n", "<A-Left>", ":vertical resize +1<CR>", default_opts)
 keymap("n", "<A-Right>", ":vertical resize -1<CR>", default_opts)

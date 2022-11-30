@@ -49,6 +49,12 @@ local function plugins(use)
   use({ "wbthomason/packer.nvim" })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "nvim-lua/plenary.nvim" })
+  use {
+    "sainnhe/everforest",
+    config = function()
+      vim.cmd "colorscheme everforest"
+    end,
+  }
   use({
     "TimUntersberger/neogit",
     cmd = { "Neogit" },
@@ -199,6 +205,7 @@ local function plugins(use)
         end,
       },
       "rafamadriz/friendly-snippets",
+      "petertriho/cmp-git",
     },
     disable = false,
   }

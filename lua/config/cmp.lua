@@ -86,6 +86,7 @@ function M.setup()
       -- { name = "spell" },
       -- { name = "emoji" },
       -- { name = "calc" },
+      { name = "git" },
     },
     window = {
       documentation = {
