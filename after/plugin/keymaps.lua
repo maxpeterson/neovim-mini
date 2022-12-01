@@ -4,7 +4,7 @@ local keymap = vim.keymap.set
 local default_opts = { noremap = true, silent = true }
 
 -- Space as leader key
-keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
+-- keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 g.mapleader = ","
 g.maplocalleader = ","
 

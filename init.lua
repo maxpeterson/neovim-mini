@@ -49,6 +49,7 @@ local function plugins(use)
   use({ "wbthomason/packer.nvim" })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "nvim-lua/plenary.nvim" })
+  use 'mhinz/vim-startify'
   use {
     "sainnhe/everforest",
     config = function()
@@ -195,7 +196,7 @@ local function plugins(use)
       "hrsh7th/cmp-nvim-lsp",
       -- "hrsh7th/cmp-nvim-lsp-signature-help",
       -- "hrsh7th/cmp-calc",
-      -- "f3fora/cmp-spell",
+      "f3fora/cmp-spell",
       -- "hrsh7th/cmp-emoji",
       {
         "L3MON4D3/LuaSnip",

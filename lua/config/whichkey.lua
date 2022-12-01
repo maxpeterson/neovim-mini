@@ -84,6 +84,10 @@ function M.setup()
     g = {
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
+      b = { "<cmd>Neogit brannch<CR>", "Branch" },
+      c = { "<cmd>Neogit commit<CR>", "Commit" },
+      p = { "<cmd>Neogit push<CR>", "Push" },
+      l = { "<cmd>Neogit pull<CR>", "Pull" },
     },
 
     f = keymaps_f,

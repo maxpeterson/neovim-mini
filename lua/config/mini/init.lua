@@ -24,6 +24,4 @@ require("mini.ai").setup({})
 
 -- custom settings
 require("config.mini.base16")
--- Removed starter due to message: buf_id` in `%s` is not an identifier of valid Starter buffer.
--- require("config.mini.starter")
 require("config.mini.statusline")
