@@ -124,7 +124,9 @@ local function plugins(use)
     "ahmedkhalf/project.nvim",
     -- event = "BufRead",
     config = function()
-      require("project_nvim").setup {}
+      require("project_nvim").setup {
+        scope_chdir = 'tab'
+      }
     end,
   }
   use {
@@ -240,6 +242,13 @@ local function plugins(use)
   })
   use({ "nvim-treesitter/playground" })
 
+	use({
+		"NvChad/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+		-- disable = true,
+	})
   -- Bootstrap Neovim
   if packer_bootstrap then
     print("Neovim restart is required after installation!")
