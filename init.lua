@@ -249,6 +249,24 @@ local function plugins(use)
 		end,
 		-- disable = true,
 	})
+  use({
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  })
+  use({
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua", "nvim-cmp" },
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  })
   -- Bootstrap Neovim
   if packer_bootstrap then
     print("Neovim restart is required after installation!")
