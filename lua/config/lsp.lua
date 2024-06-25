@@ -188,7 +188,8 @@ local function formatting(client, bufnr)
     end
 
     local lsp_format_grp = api.nvim_create_augroup("LspFormat", { clear = true })
-    api.nvim_create_autocmd("BufWritePre", {
+    -- Use "BufWritePre" for save
+    api.nvim_create_autocmd("InsertLeave", {
       callback = function()
         vim.schedule(format)
       end,
@@ -209,8 +210,7 @@ local function on_attach(client, bufnr)
 
   keymappings(client, bufnr)
   highlighting(client, bufnr)
-  -- Reformat on save
-  -- formatting(client, bufnr)
+  formatting(client, bufnr)
   -- signature_help(client, bufnr)
 end
 
