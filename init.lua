@@ -312,7 +312,7 @@ local function plugins(use)
     after = { "nvim-lspconfig" },
     config = function()
       require("prettier").setup({
-        bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
+        bin = 'prettierd', -- or `'prettier'`
         filetypes = {
           "css",
           "graphql",
