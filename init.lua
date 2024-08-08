@@ -130,6 +130,28 @@ local function plugins(use)
     end,
   }
   use {
+    "AckslD/swenv.nvim",
+    wants = {
+      "plenary.nvim",
+    },
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {"python"},
+        callback = function()
+          require('swenv.api').auto_venv()
+        end
+      })
+      require("swenv").setup {
+        venvs_path = vim.fn.expand('~/.venv'),
+        -- Something to do after setting an environment, for example call vim.cmd.LspRestart
+        post_set_venv = nil,
+      }
+    end,
+  }
+  use {
     "folke/trouble.nvim",
     event = "BufReadPre",
     wants = "nvim-web-devicons",
