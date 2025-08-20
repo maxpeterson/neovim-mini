@@ -16,6 +16,9 @@ local function lsp_progress()
   -- if not is_active then
   -- 	return
   -- end
+  if not vim.lsp.util.get_progress_messages then
+    return ""
+  end
   local messages = vim.lsp.util.get_progress_messages()
   if #messages == 0 then
     return ""

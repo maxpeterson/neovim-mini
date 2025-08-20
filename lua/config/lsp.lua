@@ -15,7 +15,7 @@ local servers = {
       },
     },
   },
-  sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
         runtime = {
@@ -101,7 +101,7 @@ local function keymappings(client, bufnr)
     keymap_l.l.f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Document" }
   end
 
-  require("which-key").register(keymap_l, { buffer = bufnr, prefix = "<leader>" })
+  require("which-key").add(keymap_l, { buffer = bufnr, prefix = "<leader>" })
 end
 
 local function highlighting(client, bufnr)
@@ -210,7 +210,7 @@ local function on_attach(client, bufnr)
 
   keymappings(client, bufnr)
   highlighting(client, bufnr)
-  formatting(client, bufnr)
+  -- formatting(client, bufnr)
   -- signature_help(client, bufnr)
 end
 
