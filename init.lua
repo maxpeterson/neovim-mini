@@ -162,22 +162,23 @@ local function plugins(use)
       }
     end,
   }
-  use {
-    "tami5/lspsaga.nvim",
-    event = "VimEnter",
-    cmd = { "Lspsaga" },
+  use ({
+    'nvimdev/lspsaga.nvim',
+    after = 'nvim-lspconfig',
     config = function()
-      require("lspsaga").setup {}
+        require('lspsaga').setup({})
     end,
-  }
+  })
   use { "junegunn/fzf", run = "./install --all" }
   use {
     "ibhagwan/fzf-lua",
     requires = { "kyazdani42/nvim-web-devicons" },
   }
+  use {'nvim-telescope/telescope-ui-select.nvim' }
   use {
     "nvim-telescope/telescope.nvim",
     opt = true,
+    tag = '0.1.8',
     config = function()
       require("config.telescope").setup()
     end,
@@ -248,8 +249,8 @@ local function plugins(use)
       "LuaSnip",
     },
     requires = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      "mason-org/mason.nvim",
+      "mason-org/mason-lspconfig.nvim",
     },
     config = function()
       require("config.lsp")
@@ -275,6 +276,7 @@ local function plugins(use)
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
+    opts = {},
     config = function()
       require("copilot").setup({
         suggestion = { enabled = false },
@@ -352,6 +354,23 @@ local function plugins(use)
       })
     end,
   })
+  use({
+    "CopilotC-Nvim/CopilotChat.nvim",
+    event = "InsertEnter",
+    requires = {
+      {
+        -- "github/copilot.vim",
+        "zbirenbaum/copilot.lua",
+        "nvim-lua/plenary.nvim",
+      },
+    },
+    build = "make tiktoken",
+    opts = {},
+    config = function()
+      require("CopilotChat").setup()
+    end,
+  })
+  use({"memgraph/cypher.vim"})
   -- Bootstrap Neovim
   if packer_bootstrap then
     print("Neovim restart is required after installation!")

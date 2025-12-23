@@ -12,6 +12,9 @@ g.taboo_tab_format = ' %N:%P '
 g.argwrap_tail_comma = 1
 g.argwrap_padded_braces = '{'
 
+g.python_host_prog = '/Users/max/.venv/neovim-mini/bin/python'
+g.python3_host_prog = '/Users/max/.venv/neovim-mini/bin/python'
+
 -- Word wrap
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
