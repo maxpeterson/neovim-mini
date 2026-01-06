@@ -27,6 +27,9 @@ function M.setup()
           nvim_lua = "[Lua]",
           treesitter = "[Treesitter]",
           path = "[Path]",
+          copilot = "[Copilot]",
+          spell = "[Spell]",
+          git = "[Git]",
         })[entry.source.name]
         return vim_item
       end,
@@ -79,12 +82,12 @@ function M.setup()
     },
     sources = {
       { name = "copilot", group_index = 2 },
-      { name = "nvim_lsp" },
+      { name = "nvim_lsp", group_index = 2 },
       { name = "treesitter" },
       { name = "buffer" },
-      { name = "luasnip" },
+      { name = "luasnip", group_index = 2 },
       { name = "nvim_lua" },
-      { name = "path" },
+      { name = "path", group_index = 2 },
       { name = "spell" },
       -- { name = "emoji" },
       -- { name = "calc" },

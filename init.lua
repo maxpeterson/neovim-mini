@@ -1,6 +1,13 @@
 local cmd = vim.cmd
 local fn = vim.fn
 local api = vim.api
+local g = vim.g
+
+g.python_host_prog = '/Users/max/.venv/neovim-mini/bin/python'
+g.python3_host_prog = '/Users/max/.venv/neovim-mini/bin/python'
+
+g.node_host_prog = '/Users/max/.nvm/versions/node/v22.21.1/lib/node_modules'
+g.copilot_node_command = '/Users/max/.nvm/versions/node/v22.21.1/bin/node'
 
 -- Global object
 _G.NVMM = {}
@@ -75,7 +82,9 @@ local function plugins(use)
   use {
     "ggandor/leap.nvim",
     config = function()
-      require('leap').add_default_mappings()
+      vim.keymap.set({'n', 'x', 'o'}, 's',  '<Plug>(leap-forward)')
+      vim.keymap.set({'n', 'x', 'o'}, 'S',  '<Plug>(leap-backward)')
+      vim.keymap.set({'n', 'x', 'o'}, 'gs', '<Plug>(leap-from-window)')
     end,
   }
   use {
@@ -281,6 +290,10 @@ local function plugins(use)
       require("copilot").setup({
         suggestion = { enabled = false },
         panel = { enabled = false },
+        -- logger = {
+        --   print_log_level = vim.log.levels.INFO,
+        --   trace_lsp = "verbose",
+        -- },
       })
     end,
   })
